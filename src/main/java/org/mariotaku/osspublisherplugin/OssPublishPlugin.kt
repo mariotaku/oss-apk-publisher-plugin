@@ -40,8 +40,6 @@ class OssPublishPlugin : Plugin<Project> {
                 val ossPublishTaskName = buildVariant.camelCaseName(buildTypeName, "ossPublish")
                 val assembleTaskName = buildVariant.camelCaseName(buildTypeName, "assemble")
 
-                println("APK file $apkPath")
-
                 return@map project.tasks.create(ossPublishTaskName, OssPublishTask::class.java) {
                     it.group = "oss-publish"
                     it.description = "Publish $targetName apk to OSS."
