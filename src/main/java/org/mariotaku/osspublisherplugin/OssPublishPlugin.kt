@@ -44,7 +44,7 @@ class OssPublishPlugin : Plugin<Project> {
                     it.group = "oss-publish"
                     it.description = "Publish $targetName apk to OSS."
                     it.config = config
-                    it.apkFile = apkPath.fileIfExists()
+                    it.apkFile = File(apkPath)
                     it.mappingFile = mappingPath.fileIfExists()
 
                     it.dependsOn(assembleTaskName)

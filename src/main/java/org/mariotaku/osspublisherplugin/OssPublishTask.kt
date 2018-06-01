@@ -18,10 +18,8 @@ open class OssPublishTask : DefaultTask() {
 
     init {
         doLast {
-            val apkFile = this.apkFile
-            if (apkFile != null) {
-                putObject(config.bucket, apkFile.key, apkFile)
-            }
+            val apkFile = this.apkFile!!
+            putObject(config.bucket, apkFile.key, apkFile)
 
             val mappingFile = this.mappingFile
             if (mappingFile != null) {
