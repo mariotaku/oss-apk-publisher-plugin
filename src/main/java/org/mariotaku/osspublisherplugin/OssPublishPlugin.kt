@@ -3,8 +3,6 @@ package org.mariotaku.osspublisherplugin
 import com.android.build.gradle.AndroidConfig
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.Task
-import org.gradle.api.tasks.TaskContainer
 import org.mariotaku.osspublisherplugin.model.FlavorScope
 import java.io.File
 
@@ -45,7 +43,7 @@ class OssPublishPlugin : Plugin<Project> {
                     it.description = "Publish $targetName apk to OSS."
                     it.config = config
                     it.apkFile = File(apkPath)
-                    it.mappingFile = mappingPath.fileIfExists()
+                    it.mappingFile = File(mappingPath)
 
                     it.dependsOn(assembleTaskName)
                 }
@@ -58,18 +56,6 @@ class OssPublishPlugin : Plugin<Project> {
                 }
             }
         }
-    }
-
-    companion object {
-
-        fun TaskContainer.injectDependency(path: String, dependsOn: Task) {
-            findByPath(path)?.dependsOn(dependsOn)
-        }
-
-        fun String.fileIfExists(): File? {
-            return File(this).takeIf { it.exists() }
-        }
-
     }
 
 }

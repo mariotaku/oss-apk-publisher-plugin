@@ -13,17 +13,15 @@ import java.util.*
 open class OssPublishTask : DefaultTask() {
 
     lateinit var config: OssPublisherExtensions
-    var apkFile: File? = null
-    var mappingFile: File? = null
+    lateinit var apkFile: File
+    lateinit var mappingFile: File
 
     init {
         doLast {
-            val apkFile = this.apkFile!!
-            putObject(config.bucket, apkFile.key, apkFile)
+            putObject(config.bucket, "${config.keyPrefix.orEmpty()}${apkFile.name}", apkFile)
 
-            val mappingFile = this.mappingFile
-            if (mappingFile != null) {
-                putObject(config.bucket, mappingFile.key, mappingFile)
+            if (mappingFile.exists()) {
+                putObject(config.bucket, "${config.keyPrefix.orEmpty()}mapping-${apkFile.nameWithoutExtension}.txt", mappingFile)
             }
         }
     }
