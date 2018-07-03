@@ -18,18 +18,26 @@ open class OssPublishTask : DefaultTask() {
 
     init {
         doLast {
-            putObject(config.bucket, "${config.keyPrefix.orEmpty()}${apkFile.name}", apkFile)
+            putObject(config.bucket, apkFile.apkKey, apkFile)
 
             if (mappingFile.exists()) {
-                putObject(config.bucket, "${config.keyPrefix.orEmpty()}mapping-${apkFile.nameWithoutExtension}.txt", mappingFile)
+                putObject(config.bucket, apkFile.mappingKey, mappingFile)
             }
         }
     }
 
-    private val File.key: String
+    private val File.apkKey: String
         get() {
-            val prefix = config.keyPrefix ?: return name
-            return "$prefix$name"
+            val prefix = config.keyPrefix.orEmpty()
+            val suffix = config.keySuffix.orEmpty()
+            return "$prefix$nameWithoutExtension$suffix.$extension"
+        }
+
+    private val File.mappingKey: String
+        get() {
+            val prefix = config.keyPrefix.orEmpty()
+            val suffix = config.keySuffix.orEmpty()
+            return "$prefix$nameWithoutExtension-mapping$suffix.txt"
         }
 
     private val File.mediaType: MediaType

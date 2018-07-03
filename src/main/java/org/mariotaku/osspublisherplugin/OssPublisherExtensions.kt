@@ -10,4 +10,5 @@ open class OssPublisherExtensions(factory: DefaultObjectFactory) {
     var bucket: String = ""
 
     var keyPrefix: String? = null
+    var keySuffix: String? = null
 }
