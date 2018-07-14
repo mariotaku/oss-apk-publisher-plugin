@@ -37,7 +37,7 @@ open class OssPublishTask : DefaultTask() {
         get() {
             val prefix = config.keyPrefix.orEmpty()
             val suffix = config.keySuffix.orEmpty()
-            return "$prefix$nameWithoutExtension-mapping$suffix.txt"
+            return "${prefix}mapping-$nameWithoutExtension$suffix.txt"
         }
 
     private val File.mediaType: MediaType
