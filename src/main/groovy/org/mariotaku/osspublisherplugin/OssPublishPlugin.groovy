@@ -50,7 +50,7 @@ class OssPublishPlugin implements Plugin<Project> {
                         }
                     }
 
-//                    dependsOn(variant.assemble)
+                    dependsOn(variant.assemble)
                 }
             }
         }
