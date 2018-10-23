@@ -3,7 +3,7 @@ apply plugin: 'maven-publish'
 
 dependencies {
     compile gradleApi()
-    compileOnly 'com.android.tools.build:gradle:3.1.2'
+    compileOnly 'com.android.tools.build:gradle:3.2.1'
 
     compile 'com.squareup.okhttp3:okhttp:3.10.0'
 
@@ -21,7 +21,7 @@ publishing {
         maven(MavenPublication) {
             groupId 'com.github.mariotaku'
             artifactId 'oss-apk-publisher-plugin'
-            version '0.0.8'
+            version '0.0.9'
 
             from components.java
         }

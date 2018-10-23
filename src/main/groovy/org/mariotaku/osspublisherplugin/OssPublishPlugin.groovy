@@ -43,7 +43,7 @@ class OssPublishPlugin implements Plugin<Project> {
 
                         if (config.uploadMapping && mappingFile.exists()) {
                             try {
-                                putObject(config, variant.mappingFile, mappingKey(config, output.outputFile))
+                                putObject(config, variant.mappingFile, mappingKey(config, variant.mappingFile))
                             } catch (e) {
                                 it.logger.error("Failed to upload mapping", e)
                             }
