@@ -44,7 +44,7 @@ class OssPublishPlugin implements Plugin<Project> {
                         def mappingFile = variant.mappingFile
                         if (config.uploadMapping && mappingFile.exists()) {
                             try {
-                                putObject(config, mappingFile, mappingKey(config, mappingFile))
+                                putObject(config, mappingFile, mappingKey(config, output.outputFile))
                             } catch (e) {
                                 it.logger.error("Failed to upload mapping", e)
                             }
@@ -71,7 +71,7 @@ class OssPublishPlugin implements Plugin<Project> {
         if (uploadName != null) return uploadName
         def prefix = config.keyPrefix ?: ""
         def suffix = config.keySuffix ?: ""
-        return "${prefix}mapping-${nameWithoutExtension(file)}${uploadName}${suffix}.${extension(file)}"
+        return "${prefix}mapping-${nameWithoutExtension(file)}${suffix}.${extension(file)}"
     }
 
     static String mediaType(File file) {
