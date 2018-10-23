@@ -41,9 +41,10 @@ class OssPublishPlugin implements Plugin<Project> {
                             it.logger.error("Failed to upload APK", e)
                         }
 
+                        def mappingFile = variant.mappingFile
                         if (config.uploadMapping && mappingFile.exists()) {
                             try {
-                                putObject(config, variant.mappingFile, mappingKey(config, variant.mappingFile))
+                                putObject(config, mappingFile, mappingKey(config, mappingFile))
                             } catch (e) {
                                 it.logger.error("Failed to upload mapping", e)
                             }

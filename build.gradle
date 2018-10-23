@@ -21,7 +21,7 @@ publishing {
         maven(MavenPublication) {
             groupId 'com.github.mariotaku'
             artifactId 'oss-apk-publisher-plugin'
-            version '0.0.9'
+            version '0.0.10'
 
             from components.java
         }
